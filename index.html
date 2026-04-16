@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="da">
+<!--
+  index.html - Hyldestside til Bruun
+  Kommentarer til alle hoveddele for nem redigering
+-->
+<head>
+  <meta charset="UTF-8">
+  <!-- Farveskema: gør det muligt at bruge darkmode -->
+  <meta name="color-scheme" content="dark light">
+  <title>🏆 Hyldest til Mr BrunSovz 🏆</title>
+  <!--
+    PRIMÆR STYLING (desktop)
+    Her justerer du layout, farver, container, bold, emojis, tekst osv.
+  -->
+  <style>
+    body {
+      /* Sidebaggrund, tekstfarve, centrering */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #8B4513, #D2691E);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .container {
+      /* Hovedboksens bredde, baggrund, afrunding, skygge, max-højde og scroll */
+      max-width: 800px;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    h1 {
+      /* Overskriftfarve og margin */
+      color: #8B4513;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+    .section {
+      /* Sektioner med margin, padding og bundstreg */
+      margin: 2rem 0;
+      padding: 1rem;
+      border-bottom: 1px solid #ddd;
+    }
+    .section:last-child {
+      border-bottom: none;
+    }
+    img {
+      /* Hvis du bruger billeder */
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    .icon {
+      /* Emoji-ikonernes størrelse og margin */
+      font-size: 4rem;
+      margin: 1rem 0;
+    }
+    .animation {
+      /* Boldens udseende og tekstplacering */
+      width: 200px;
+      height: 200px;
+      margin: 2rem auto;
+      background: #FF0000;
+      border-radius: 50%;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      text-align: center;
+      line-height: 180px;
+      font-size: 1.5em;
+      color: white;
+    }
+    @keyframes bounce {
+      /* Boldens hoppe-animation */
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-30px); }
+      60% { transform: translateY(-15px); }
+    }
+    .prank {
+      /* Skjult prank-tekst, vises ved klik */
+      display: none;
+      color: #FF6347;
+      font-weight: bold;
+    }
+    button {
+      /* Knap-styling */
+      background: #8B4513;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background: #A0522D;
+    }
+    .footer {
+      /* Credits nederst på siden */
+      margin: 2.5rem 1.5rem 1rem 1.5rem;
+      padding: 1rem 0;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .refresh-teaser {
+      /* Teaser for at refreshe */
+      margin: 0 1.5rem 1rem 1.5rem;
+      padding: 0.6rem 1rem;
+      background: linear-gradient(135deg, #f0e68c, #ffd700);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: #333;
+      font-weight: 500;
+      animation: pulse 2s infinite;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .refresh-teaser:hover {
+      transform: scale(1.02);
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+  </style>
+  <!--
+    RESPONSIVT DESIGN (mobil)
+    Alt i denne blok gælder kun på små skærme (<600px).
+    Fjern eller kommentér denne blok hvis du ikke ønsker mobil-tilpasning.
+  -->
+  <style>
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.3rem;
+      }
+      h2 {
+        font-size: 1.1rem;
+      }
+      .container {
+        padding: 1rem;
+        max-height: 90vh;
+      }
+      .icon {
+        font-size: 3rem;
+      }
+      .animation {
+        width: 150px;
+        height: 150px;
+        line-height: 135px;
+        font-size: 1.2em;
+      }
+      #popup {
+        width: 80vw;
+        max-width: 350px;
+      }
+    }
+  </style>
+  <!--
+    DARKMODE STYLING
+    Alt i denne blok gælder kun hvis brugerens system er sat til darkmode.
+    Her kan du ændre farver for mørkt tema.
+  -->
+  <style>
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: linear-gradient(to bottom, #2c1810, #5a2d1a);
+        color: #f0f0f0;
+      }
+      .container {
+        background: #1a1a1a;
+        box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+      }
+      h1 {
+        color: #d2691e;
+      }
+      .section {
+        border-bottom: 1px solid #444;
+      }
+      .footer {
+        color: #ccc;
+      }
+      button {
+        background: #8B4513;
+      }
+      button:hover {
+        background: #A0522D;
+      }
+      #popup {
+        background: #2a2a2a !important;
+        color: #f0f0f0 !important;
+      }
+      .refresh-teaser {
+        background: linear-gradient(135deg, #8B4513, #d2691e);
+        color: #f0f0f0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!--
+    HOVEDINDHOLD
+    Alt indhold vises dynamisk i denne container via JavaScript.
+    Du kan ændre containerens styling i .container-klassen ovenfor.
+  -->
+  <div class="container" id="content">
+    <!-- Indhold indsættes her via JS -->
+  </div>
+  <script>
+    // ---------------------------------------------
+    //  INDHOLD: De tre forslag til hyldest-sider
+    //  Redigér tekst, emojis, overskrifter og sektioner herunder
+    // ---------------------------------------------
+    const suggestions = [
+      // Forslag 1: Statisk hyldest med sektioner og emojis
+      `<h1>🏆 Hyldest til Mr BrunSovz 🏆</h1>
+      <p>Tillykke med det kommende bryllup! Denne side er en lille gave fra dine gamle kollegiekammerater. Lad os fejre dig og dine passioner.</p>
+      
+      <div class="section">
+        <h2>💪 Springgymnastik Champion</h2>
+        <p>Din atletiske bygning og høje niveau i springgymnastik har altid imponeret os. Du er en sand mester i bevægelse!</p>
+        <div class="icon">🤸‍♂️</div>
+      </div>
+      
+      <div class="section">
+        <h2>❄️ Vinterbadning Enthusiast</h2>
+        <p>Hver søndag i det kolde vand – startede med gutterne, nu med din kommende kone. Du er sejere end isen!</p>
+        <div class="icon">🏊‍♂️❄️</div>
+      </div>
+      
+      <div class="section">
+        <h2>🥣 Havregryn Elsker</h2>
+        <p>Aftensmad kl. 18, havregryn kl. 18:30. Din go-to snack var legendarisk og kendt på hele kollegiet!</p>
+        <div class="icon">🥣🍲</div>
+      </div>
+      
+      <div class="section">
+        <h2>🕺 Dans og Bevægelse</h2>
+        <p>Du elsker at danse og bevæge dig – din energi er smitsom! Lad os danse til brylluppet!</p>
+        <div class="icon">🕺💃</div>
+      </div>
+      
+      <div class="footer">
+        © 2026 Claude — Til Mr BrunSovz med kærlighed og sjov
+      </div>
+      <div class="refresh-teaser" onclick="location.reload()">
+        ✨ Refresh siden for at se mere! ✨<br>
+        <small>Eller vent <span id="countdown"></span> sekunder...</small>
+      </div>`,
+
+      // Forslag 2: Interaktiv bold og popup
+      `<h1>🏆 Interaktiv Hyldest til Mr BrunSovz 🏆</h1>
+      <p>Klik på bolden for at se hvor højt han kan springe! Tillykke med det kommende bryllup – din energi er uendelig.</p>
+      
+      <div class="animation">Klik mig</div>
+      <div id="popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:2rem; border-radius:10px; border:5px solid #FFD700; box-shadow:0 8px 20px rgba(0,0,0,0.3); z-index:1000; text-align:center;">
+        <h2>🚨 EMERGENCY! 🚨</h2>
+        <p>Han hoppede så højt, at han fløj ud af siden!</p>
+        <p>Vi var nødt til at fange ham med en popup! 😅</p>
+        <p>Han er nu i sikkerhed og kan vende tilbage til sine havregryn.</p>
+        <p>Men kun hvis du tillader det!</p>
+        <button onclick="hidePopup()">Slip ham løs igen</button>
+      </div>
+      
+      <div class="section">
+        <h2>💪 Din Gymnastik Passion</h2>
+        <p>Som en springgymnastik mester hopper du over alle forhindringer – også i livet!</p>
+      </div>
+      
+      <div class="section">
+        <h2>❄️ Vinterbadning & Venner</h2>
+        <p>Fra kollegiet til søndage med din kone – du er en vinterbadningslegende.</p>
+      </div>
+      
+      <div class="section">
+        <h2>🥣 Havregryn & Dans</h2>
+        <p>Din kærlighed til havregryn og dans holder dig i gang. Vi elsker din stil!</p>
+      </div>
+      
+      <div class="footer">
+        © 2026 Claude — Til Mr BrunSovz med et strejf af havregryn
+      </div>
+      <div class="refresh-teaser" onclick="location.reload()">
+        ✨ Refresh siden for at se mere! ✨<br>
+        <small>Eller vent <span id="countdown"></span> sekunder...</small>
+      </div>`,
+
+      // Forslag 3: Prank med skjult tekst
+      `<h1>🏆 Ægte Hyldest til Mr BrunSovz 🏆</h1>
+      <p>Tillykke med det kommende bryllup! Du er den bedste ven, atlet og havregryn-elsker vi kender.</p>
+      
+      <p>Din springgymnastik er imponerende, vinterbadning sej, og din dans er uovertruffen.</p>
+      
+      <button onclick="revealPrank()">Klik for at se mere</button>
+      
+      <div class="prank" id="prank">
+        <h2>😜 Prank Alert! 😜</h2>
+        <p>Haha! Dette er en prank-side. Mr BrunSovz, kan du huske dengang du spiste havregryn efter pizza? Klassisk!</p>
+        <p>Men seriøst: Tillykke! I fortjener hinanden og alt det bedste for fremtiden.</p>
+      </div>
+      
+      <div class="section"></div>
+      
+      <div class="footer">
+        © 2026 Claude — Prank med kærlighed
+      </div>
+      <div class="refresh-teaser" onclick="location.reload()">
+        ✨ Refresh siden for at se mere! ✨<br>
+        <small>Eller vent <span id="countdown"></span> sekunder...</small>
+      </div>`
+    ];
+
+    // ---------------------------------------------
+    //  LOGIK: Viser forslagene sekventielt ved refresh
+    //  Du kan ændre rækkefølge eller vise et bestemt forslag
+    // ---------------------------------------------
+    let currentIndex = parseInt(localStorage.getItem('currentIndex')) || 0;
+    currentIndex = (currentIndex + 1) % suggestions.length;
+    localStorage.setItem('currentIndex', currentIndex);
+    document.getElementById('content').innerHTML = suggestions[currentIndex];
+
+    // ---------------------------------------------
+    //  EVENT HANDLERS: Popup og prank-funktioner
+    //  Redigér hvis du vil ændre popup eller prank-adfærd
+    // ---------------------------------------------
+    if (currentIndex === 1) { // Forslag 2
+      setTimeout(() => {
+        const anim = document.querySelector('.animation');
+        if (anim) {
+          anim.addEventListener('click', showPopup);
+        }
+      }, 100);
+    }
+
+    function revealPrank() {
+      const prank = document.getElementById('prank');
+      if (prank) prank.style.display = 'block';
+    }
+
+    function showPopup() {
+      const popup = document.getElementById('popup');
+      if (popup) popup.style.display = 'block';
+    }
+
+    function hidePopup() {
+      const popup = document.getElementById('popup');
+      if (popup) popup.style.display = 'none';
+    }
+
+    // ---------------------------------------------
+    //  AUTO-REFRESH: Skifter automatisk til næste side
+    //  Du kan ændre tiden i sekunder herunder
+    // ---------------------------------------------
+    const AUTO_REFRESH_SECONDS = 60; // Ændr dette tal for at justere tiden
+    let timeLeft = AUTO_REFRESH_SECONDS;
+    
+    const countdownElement = document.getElementById('countdown');
+    if (countdownElement) {
+      countdownElement.textContent = timeLeft;
+      
+      const countdownInterval = setInterval(() => {
+        timeLeft--;
+        if (countdownElement) countdownElement.textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+          clearInterval(countdownInterval);
+          location.reload();
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
